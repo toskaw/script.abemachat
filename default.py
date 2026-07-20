@@ -151,11 +151,11 @@ class irc_client(threading.Thread):
         if len(new_line.strip()) > 0:
             new_message.append(new_line.strip())
         for i in new_message:
-            control.addItem(xbmcgui.ListItem(label=i))
+            control.addItem(xbmcgui.ListItem(label2=i))
         c_size = control.size()
-        control.selectItem(c_size-1)
-        xbmc.executebuiltin("Control.move(1331, %s)" %c_size)
-        # addon_log('List Size: %s' %c_size)
+        control.selectItem(c_size - 1)
+        #xbmc.executebuiltin("Control.move(1331, %s)" %c_size)
+        addon_log('List Size: %s' %c_size)
         return
 
     def send_message(self, message):
