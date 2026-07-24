@@ -135,9 +135,16 @@ class irc_client(threading.Thread):
         words = message[1].split()
         new_line = ''
         for i in range(len(words)):
-            new_line += words[i]+' '
-            new_message.append(new_line.strip())
-            new_line = ''
+            if len(words[i]) < 30:
+                if (len(words[i]) + len(new_line)) < 30:
+                    new_line += words[i]+' '
+                else:
+                    new_message.append(new_line.strip())
+                    new_line = words[i]+' '
+            else:
+                new_line += words[i]+' '
+                new_message.append(new_line.strip())
+                new_line = ''
             
         if len(new_line.strip()) > 0:
             new_message.append(new_line.strip())
