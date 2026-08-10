@@ -120,6 +120,9 @@ class irc_client(threading.Thread):
                 messages = abema.fetch_comments(self.cid, 100, self.since)
             
             if 'comments' in messages:
+                if not messages['comments']:
+                    self.since = self.since + 100
+                    return True
                 for message in reversed(messages['comments']):
                     chat_queue.put(("", message['message']))
                     self.since = message['createdAtMs']
@@ -225,6 +228,7 @@ class GUI(xbmcgui.WindowXMLDialog):
             self.connect_to_server()
 
     def connect_to_server(self):
+        #import web_pdb; web_pdb.set_trace()
         xbmc.executebuiltin("Skin.ToggleSetting(ChatIsLoading)")
         if self.window.getProperty('connected') != "True":
             # connect to server
@@ -256,7 +260,6 @@ class GUI(xbmcgui.WindowXMLDialog):
                             #channel = i['title'].encode('utf-8')
                             channel = i['title']
                             if channel == self.VideoTitle:
-                                #import web_pdb; web_pdb.set_trace()
                                 addon.setSetting('channel_name', i['title'])
                                 addon.setSetting('channel_id', i['id'])
                                 addon.setSetting('video_title', self.VideoTitle)
@@ -612,12 +615,8 @@ if params:
 
 else:
     host = addon.getSetting('irc_host')
-    channel = addon.getSetting('channel_name')
-    if channel and not channel.startswith('#'):
-        channel = '#%s' %channel
+    channel = ''
     videotitle = xbmc.getInfoLabel('VideoPlayer.Title')
-    if videotitle != addon.getSetting('video_title'):
-        channel = ''
     nickname = addon.getSetting('nickname')
     username = addon.getSetting('username')
     realname = addon.getSetting('realname')
