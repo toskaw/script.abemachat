@@ -8,7 +8,17 @@
 	<onload condition="Skin.HasSetting(ChatContextMenu)">Skin.ToggleSetting(ChatContextMenu)</onload>
 	
 	<controls>
-	
+	  <control type="group">
+		<posx>0</posx>
+		<posy>0</posy>
+		<width>880</width>
+		<control type="videowindow">
+		  <left>0</left>
+		  <top>0</top>
+		  <width>880</width>
+		  <height>720</height>
+		</control>
+	  </control>
 				
 		<control type="group">
 		<posx>0</posx>
@@ -22,7 +32,6 @@
 		<animation type="Conditional" condition="Skin.Hassetting(ChatNamesList)">
 			<effect type="slide" start="0,0" end="-200,0" time="400" delay="0" tween="quadratic" easing="out"/>
 		</animation>
-
 			<control type="image">
 				<posx>880</posx>
 				<posy>0</posy>
@@ -633,7 +642,8 @@
 				</focusedlayout>
 					
 			</control>
-		</control>
+
+		      </control>
 		
 	</controls>
 </window>

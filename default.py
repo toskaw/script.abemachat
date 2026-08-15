@@ -29,7 +29,7 @@ class irc_client(threading.Thread):
         self.cid = ""
         
     def run(self):
-        self.window = xbmcgui.Window(xbmcgui.getCurrentWindowDialogId())
+        self.window = xbmcgui.Window(xbmcgui.getCurrentWindowId())
         client_do = 'client_wait'
         self.window.setProperty('clientIsRunning', 'True')
         while not client_do == 'client_stop':
@@ -197,9 +197,10 @@ class irc_client(threading.Thread):
         self.cid = id
         self.since = None
 
-class GUI(xbmcgui.WindowXMLDialog):
+class GUI(xbmcgui.WindowXML):
     def __init__( self, *args, **kwargs ):
-        xbmcgui.WindowXMLDialog.__init__( self )
+        #xbmcgui.WindowXMLDialog.__init__( self )
+        xbmcgui.WindowXML.__init__( self )
         self.host = host
         self.nickname = nickname
         self.username = username
@@ -214,7 +215,8 @@ class GUI(xbmcgui.WindowXMLDialog):
         self.item = ''
         
     def onInit(self):
-        self.window = xbmcgui.Window(xbmcgui.getCurrentWindowDialogId())
+        #self.window = xbmcgui.Window(xbmcgui.getCurrentWindowDialogId())
+        self.window = xbmcgui.Window(xbmcgui.getCurrentWindowId())
         self.client = irc_client()
         self.client.daemon = True
         self.client.start()
