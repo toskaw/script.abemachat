@@ -8,7 +8,10 @@ Keymap Editor アドオン等を使用して、リモコンにアドオンの起
 再生中のタイトルとマッチするチャットを表示します
 
 上部の＜アイコンを選択して、手動でチャットを選ぶこともできます
+## インストール
+  [script.module.yt-dlp](https://github.com/lekma/script.module.yt-dlp)が必要です。事前にインストールしてください。
 
+## スクリーンショット
 <img src="https://github.com/toskaw/script.abemachat/blob/main/screenshots/sample1.png?raw=true" alt="screenshot 1" width="400"/>
 <img src="https://github.com/toskaw/script.abemachat/blob/main/screenshots/sample2.png?raw=true" alt="screenshot 2" width="400"/>
 

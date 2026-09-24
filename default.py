@@ -9,6 +9,8 @@ import time
 import xbmcgui
 import xbmcaddon
 import xbmcvfs
+import xbmc
+import simplejson as json
 
 addon = xbmcaddon.Addon()
 addon_id = addon.getAddonInfo('id')
@@ -119,14 +121,15 @@ class irc_client(threading.Thread):
             if self.cid :
                 messages = abema.fetch_comments(self.cid, 100, self.since)
             
-            if 'comments' in messages:
-                if not messages['comments']:
-                    self.since = self.since + 100
+                if 'comments' in messages:
+                    if not messages['comments']:
+                        if self.since:
+                            self.since = self.since + 100
+                        return True
+                    for message in reversed(messages['comments']):
+                        chat_queue.put(("", message['message']))
+                        self.since = message['createdAtMs']
                     return True
-                for message in reversed(messages['comments']):
-                    chat_queue.put(("", message['message']))
-                    self.since = message['createdAtMs']
-                return True
 
         except:
             addon_log('addonException: %s' %print_exc())
@@ -445,6 +448,13 @@ class GUI(xbmcgui.WindowXML):
                 addon_log('Close Channels')
                 control.reset()
                 xbmc.executebuiltin("Skin.Reset(ChatNamesList)")
+        elif controlID == 1250:
+            # reload video
+            player = xbmc.Player()
+            file = player.getPlayingFile()
+            item = player.getPlayingItem()
+            player.stop()
+            player.play(file, item)
 
         elif controlID == 1263:
             # connect button

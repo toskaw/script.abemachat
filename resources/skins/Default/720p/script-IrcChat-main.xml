@@ -18,6 +18,48 @@
 		  <width>880</width>
 		  <height>720</height>
 		</control>
+		<control type="grouplist" id="202">
+		  <top>620</top>
+		  <height>100</height>
+		  <width>100%</width>
+		  <align>center</align>
+		  <scrolltime tween="sine">200</scrolltime>
+		  <orientation>horizontal</orientation>
+		  <control type="button" id="1250">
+		    <texturefocus border="10">IrcChat/ChatTopButtonFO.png</texturefocus>
+		    <label>[B]↺[/B]</label>
+		    <align>center</align>
+		    <aligny>center</aligny>
+		    <font>font60</font>
+		    <focusedcolor>FFFFFFFF</focusedcolor>
+		    <textcolor>$INFO[Skin.String(ChatMenuColorString)]</textcolor>
+		    <shadowcolor>FF000000</shadowcolor>
+		    <textoffsety>-2</textoffsety>
+		    <textoffsetx />								
+		    <width>70</width>
+		    <height>70</height>
+		    <onup>60</onup>
+		  </control>
+		  <control type="button" id="1251">
+		    <texturefocus border="10">IrcChat/ChatTopButtonFO.png</texturefocus>
+		    <label>[B]■[/B]</label>
+		    <align>center</align>
+		    <aligny>top</aligny>
+		    <font>font60</font>
+		    <focusedcolor>FFFFFFFF</focusedcolor>
+		    <textcolor>$INFO[Skin.String(ChatMenuColorString)]</textcolor>
+		    <shadowcolor>FF000000</shadowcolor>
+		    <textoffsety>-2</textoffsety>
+		    <textoffsetx />								
+		    <width>70</width>
+		    <height>70</height>
+		    <onup>60</onup>
+		    <onleft>1250</onleft>
+		    <onclick>Back</onclick>
+		    <onclick>PlayerControl(Stop)</onclick>
+		  </control>
+		</control>
+
 	  </control>
 				
 		<control type="group">
@@ -158,6 +200,7 @@
 				<textureslidernibfocus>IrcChat/ChatSliderNib.png</textureslidernibfocus>
 				<onleft>1239</onleft>
 				<onright>1240</onright>
+				<ondown>1250</ondown>
 				<showonepage>true</showonepage>
 				<orientation>vertical</orientation>
 			</control>
